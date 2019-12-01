@@ -1,0 +1,9 @@
+.login-card-wrapper {
+  margin: 100px 0px;
+}
+
+mat-card-title,
+mat-card-content {
+  text-align: center;
+  min-width: 240px;
+}

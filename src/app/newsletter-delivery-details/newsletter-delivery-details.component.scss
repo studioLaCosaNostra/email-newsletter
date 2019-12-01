@@ -1,0 +1,21 @@
+mat-card {
+  max-width: 900px;
+  margin: 10px auto 0 auto;
+
+  .html-view, .text-view {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .title {
+    display: flex;
+    .spacer {
+      flex: 1 1 auto;
+    }
+  }
+  
+}

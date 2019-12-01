@@ -1,0 +1,13 @@
+@mixin app-theme($theme) {
+  $foreground-pallete: map-get($theme, foreground);
+  $background-palette: map-get($theme, background);
+
+  app-root {
+    color: mat-color($foreground-pallete, text);
+    background-color: mat-color($background-palette, background);
+  }
+
+  [appcontenteditor] {
+    background-color: mat-color($background-palette, background);
+  }
+}

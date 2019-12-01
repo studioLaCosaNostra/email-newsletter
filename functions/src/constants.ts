@@ -1,0 +1,12 @@
+export const NEWSLETTERS = 'newsletters';
+export const NEWSLETTER_SETTINGS = 'newsletter-settings';
+export const SUBSCRIBERS = 'subscribers'
+export const SUBSCRIBERS_INTERNAL = 'subscribers-internal';
+export const MESSAGES = 'messages';
+export const DELIVERY = 'delivery';
+export const NEWSLETTER_ROLES = 'newsletter-roles';
+export const USER_ROLE = 'user-role';
+export const CONFIRM_URL = `https://email-newsletter.web.app/api/v1/confirm`;
+export const UNSUBSCRIBE_URL = `https://email-newsletter.web.app/api/v1/unsubscribe`;
+export const NEWSLETTER_INVITATIONS = 'newsletter-invitations';
+export const UNSUBSCRIBE_SIGNATURE = '{{unsubscribeUrl}}';

@@ -1,0 +1,308 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "newsletter-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/browser",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest",
+              "src/robots.txt"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "src/styles.scss"
+            ],
+            "scripts": [
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1.5mb",
+                  "maximumError": "1.5mb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "newsletter-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "newsletter-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "newsletter-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "newsletter-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "newsletter-app:serve:production"
+            }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": {
+                "scripts": false,
+                "styles": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "@email-newsletter/newsletter-subscribe-form": {
+      "projectType": "library",
+      "root": "projects/email-newsletter/newsletter-subscribe-form",
+      "sourceRoot": "projects/email-newsletter/newsletter-subscribe-form/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/email-newsletter/newsletter-subscribe-form/tsconfig.lib.json",
+            "project": "projects/email-newsletter/newsletter-subscribe-form/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/email-newsletter/newsletter-subscribe-form/src/test.ts",
+            "tsConfig": "projects/email-newsletter/newsletter-subscribe-form/tsconfig.spec.json",
+            "karmaConfig": "projects/email-newsletter/newsletter-subscribe-form/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/email-newsletter/newsletter-subscribe-form/tsconfig.lib.json",
+              "projects/email-newsletter/newsletter-subscribe-form/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "newsletter-subscribe-form-element": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/newsletter-subscribe-form-element",
+      "sourceRoot": "projects/newsletter-subscribe-form-element/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/newsletter-subscribe-form-element",
+            "index": "projects/newsletter-subscribe-form-element/src/index.html",
+            "main": "projects/newsletter-subscribe-form-element/src/main.ts",
+            "polyfills": "projects/newsletter-subscribe-form-element/src/polyfills.ts",
+            "tsConfig": "projects/newsletter-subscribe-form-element/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/newsletter-subscribe-form-element/src/favicon.ico",
+              "projects/newsletter-subscribe-form-element/src/assets"
+            ],
+            "styles": [
+              "projects/newsletter-subscribe-form-element/src/styles.css"
+            ],
+            "scripts": [
+              {
+                "bundleName": "polyfill-webcomp-es5",
+                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+              },
+              {
+                "bundleName": "polyfill-webcomp",
+                "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/newsletter-subscribe-form-element/src/environments/environment.ts",
+                  "with": "projects/newsletter-subscribe-form-element/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "newsletter-subscribe-form-element:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "newsletter-subscribe-form-element:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "newsletter-subscribe-form-element:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/newsletter-subscribe-form-element/src/test.ts",
+            "polyfills": "projects/newsletter-subscribe-form-element/src/polyfills.ts",
+            "tsConfig": "projects/newsletter-subscribe-form-element/tsconfig.spec.json",
+            "karmaConfig": "projects/newsletter-subscribe-form-element/karma.conf.js",
+            "assets": [
+              "projects/newsletter-subscribe-form-element/src/favicon.ico",
+              "projects/newsletter-subscribe-form-element/src/assets"
+            ],
+            "styles": [
+              "projects/newsletter-subscribe-form-element/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/newsletter-subscribe-form-element/tsconfig.app.json",
+              "projects/newsletter-subscribe-form-element/tsconfig.spec.json",
+              "projects/newsletter-subscribe-form-element/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/newsletter-subscribe-form-element/e2e/protractor.conf.js",
+            "devServerTarget": "newsletter-subscribe-form-element:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "newsletter-subscribe-form-element:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "newsletter-app"
+}

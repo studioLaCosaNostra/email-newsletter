@@ -1,0 +1,26 @@
+<ng-template #loginTemplate>
+  <a mat-button
+    title="Click to open home page"
+    routerLink="/">EMAIL NEWSLETTER</a>
+  <span class="spacer"></span>
+  <a mat-button
+    title="Click to sign in"
+    routerLink="/auth" 
+    routerLinkActive="mat-accent">Sign in</a>
+</ng-template>
+
+<mat-toolbar>
+  <mat-toolbar-row>
+    <ng-container *ngIf="isLoggedIn$ | async; else loginTemplate">
+      <a mat-button
+        title="Click to open home page"
+        routerLink="/">Home</a>
+      <a mat-button
+        title="Click to open newsletters list"
+        routerLink="/newsletters"
+        routerLinkActive="mat-accent">Newsletters</a>
+      <span class="spacer"></span>
+      <a mat-button (click)="signOut()">Sign out</a>
+    </ng-container>
+  </mat-toolbar-row>
+</mat-toolbar>

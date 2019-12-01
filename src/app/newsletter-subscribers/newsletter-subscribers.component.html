@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+<app-navbar-newsletter></app-navbar-newsletter>
+<div *ngIf="subscribers$ | withLoading | async as subscribers">
+  <ng-container *ngIf="subscribers.value">
+    <mat-card *ngFor="let subscriber of subscribers.value" class="subscriber">
+      <b>{{ subscriber.email }}</b>
+    </mat-card>
+  </ng-container>
+  <ng-container *ngIf="subscribers.loading">
+    <app-progress-indicator></app-progress-indicator>
+  </ng-container>
+</div>
+

@@ -1,0 +1,9 @@
+mat-expansion-panel, mat-expansion-panel-header:hover {
+  background: #212121 !important;
+}
+
+.divider::before, .divider::after {
+  display: block;
+  content: '';
+  padding: 5px;
+}

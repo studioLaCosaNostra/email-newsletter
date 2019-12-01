@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+mat-card {
+  max-width: 900px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.create-newsletter {
+  mat-card-content {
+    text-align: center;
+  }
+}
+
+footer {
+  text-align: center;
+}

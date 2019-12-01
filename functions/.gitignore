@@ -1,0 +1,9 @@
+## Compiled JavaScript files
+**/*.js
+**/*.js.map
+
+node_modules/
+
+## code coverage
+.nyc_output
+coverage

@@ -1,0 +1,19 @@
+<form class="subscribe-form" [formGroup]="subscriberForm" (ngSubmit)="onSubmit()">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-form-field color="accent">
+      <mat-label>Enter your email...</mat-label>
+      <input matInput id="email" type="text" name="email" autocomplete="on" formControlName="email">
+      <mat-error *ngIf="email.touched && email.hasError('email')">Invalid email</mat-error>
+    </mat-form-field>
+    <div>
+      <button 
+        mat-button mat-raised-button
+        class="submit" 
+        color="primary" 
+        type="submit"
+        [disabled]="submitted">
+        {{ submitButtonText }}
+      </button>
+    </div>
+  </div>
+</form>

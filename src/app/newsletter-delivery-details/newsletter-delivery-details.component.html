@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<app-navbar-newsletter></app-navbar-newsletter>
+<div *ngIf="deliveryDetails$ | async as deliveryDetails">
+  <mat-card class="details">
+      <mat-card-title class="title">
+        {{ deliveryDetails?.message?.name }}<span class="spacer"></span>
+        {{ deliveryDetails?.status }}
+      </mat-card-title>
+      <mat-card-subtitle>{{ deliveryId$ | async }}</mat-card-subtitle>
+    <mat-card-content>
+      <p>SUBJECT: {{ deliveryDetails?.message?.subject }}</p>
+      <p>HTML:</p>
+      <div class="html-view" [innerHTML]="deliveryDetails?.message?.html | safe: 'html'"></div>
+      <p>TEXT:</p>
+      <div class="text-view" [innerText]="deliveryDetails?.message?.text"></div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<app-navbar-newsletter></app-navbar-newsletter>
+<ng-container *ngIf="id$ | async as id">
+  <ng-container *ngIf="delivery$ | withLoading | async as delivery">
+    <ng-container *ngIf="delivery.value">
+      <div *ngIf="delivery.value.length === 0" class="empty">
+        <p>
+          You don't have any delivery on the list yet. <br>
+          <a mat-button color="primary" [routerLink]="['/newsletters', id, 'messages']">Go to the messages</a><br> and deliver any of them.
+        </p>
+      </div>
+      <ng-container *ngFor="let deliveryItem of delivery.value">
+        <mat-card routerLink="./{{ deliveryItem.id }}">
+          {{ deliveryItem?.message?.name }}
+          <br>
+          {{ deliveryItem?.status }}
+          <br>
+          {{ deliveryItem?.createdAt }}
+        </mat-card>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="delivery.loading">
+      <app-progress-indicator></app-progress-indicator>
+    </ng-container>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<app-navbar-newsletter></app-navbar-newsletter>
+<div *ngIf="{
+  update: message$ | async,
+  id: id$ | async,
+  messageId: messageId$ | async
+} as messageInfo">
+<mat-card>
+  <form [formGroup]="messageForm" 
+        (ngSubmit)="onSubmit(messageInfo, messageForm.value)">
+    <div>
+      <mat-form-field>
+        <mat-label for="name">
+          Name
+        </mat-label>
+        <input matInput id="name" formControlName="name" placeholder="Name">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label for="subject">
+          Subject
+        </mat-label>
+        <input matInput id="subject" formControlName="subject" placeholder="Subject">
+      </mat-form-field>
+    </div>
+    <div>
+      <p>Body</p>
+      <div appContentEditor formControlName="body"></div>
+      Version: {{ messageForm.value?.body?.version }}
+    </div>
+
+    <button mat-button color="primary" *ngIf="!messageInfo.messageId" type="submit" mat-raised-button>Save</button>
+  </form>
+</mat-card>
+
+</div>

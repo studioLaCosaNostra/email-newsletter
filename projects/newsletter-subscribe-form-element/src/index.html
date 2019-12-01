@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NewsletterSubscribeFormElement</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <newsletter-subscribe-form 
+    newsletter="1288bf93-8539-4c96-a93d-be7c6b65ff30">
+  </newsletter-subscribe-form>
+  <script>
+    const form = document.querySelector('newsletter-subscribe-form');
+    form.addEventListener('subscribe', (event) => {
+      console.log(`subscribe: ${event.detail}`)
+    })
+  </script>
+</body>
+</html>

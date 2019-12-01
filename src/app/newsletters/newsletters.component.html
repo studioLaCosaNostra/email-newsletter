@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<ng-container *ngIf="userRoles$ | withLoading | async as userRoles">
+  <ng-container *ngIf="userRoles.value">
+    <div *ngIf="userRoles.value.length === 0" class="empty">
+      <h2>No newsletters</h2>
+      <p>
+        Add a newsletter by clicking on the button below.<br>
+      </p>
+    </div>
+    <div *ngFor="let userRole of userRoles.value">
+      <mat-card class="newsletter" routerLink="./{{ userRole.newsletterId }}" fxLayout="column" fxLayoutAlign="center center">
+        <p>{{ userRole.newsletter }}</p>
+      </mat-card>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="userRoles.loading">
+    <app-progress-indicator></app-progress-indicator>
+  </ng-container>
+</ng-container>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <app-new-newsletter-button></app-new-newsletter-button>
+</div>

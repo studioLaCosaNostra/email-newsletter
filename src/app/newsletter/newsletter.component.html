@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+<app-navbar-newsletter></app-navbar-newsletter>
+<ng-container *ngIf="newsletter$ | async as newsletter">
+  <mat-card class="newsletter">
+    <mat-card-title>
+      {{ newsletter?.name }}
+    </mat-card-title>
+    <mat-card-content>
+      <p>Subscribers: {{ newsletter.subscribers || 0 }}</p>
+      <p>Sent emails: {{ newsletter.sentEmails || 0 }}</p>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card class="newsletter-form-example">
+    <p>Add subscribe form on website</p>
+    <p>HEAD:</p>
+    <!-- TODO 1: Add code mirror -->
+    <textarea>
+<script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/@email-newsletter/newsletter-subscribe-form@0.0.7/custom-element/polyfills-es5.js"></script>
+<script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/@email-newsletter/newsletter-subscribe-form@0.0.7/custom-element/main-es5.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@angular/material@8.1.0/prebuilt-themes/indigo-pink.css" rel="stylesheet">
+    </textarea>
+    <p>TAG:</p>
+    <!-- TODO 1: Add code mirror -->
+    <textarea>
+<newsletter-subscribe-form newsletter="{{ newsletter.id }}"></newsletter-subscribe-form>
+    </textarea>
+  </mat-card>
+</ng-container>

@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+<div class="form" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-title>Name</mat-card-title>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+      <mat-form-field color="accent">
+        <input matInput autofocus #newsletterName type="text">
+      </mat-form-field>
+      <button mat-button color="primary" mat-raised-button (click)="createNewNewsletter()">Create new newsletter</button>
+    </mat-card-content>
+  </mat-card>
+</div>

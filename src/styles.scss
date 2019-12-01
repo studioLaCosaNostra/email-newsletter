@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import './assets/material-icons/material-icons.css';
+
+// Import library functions for theme creation.
+@import '~@angular/material/theming';
+@import './styles/app';
+@import '~prosemirror-view/style/prosemirror.css';
+@import '~prosemirror-menu/style/menu.css';
+@import '~prosemirror-example-setup/style/style.css';
+@import '~firebaseui/dist/firebaseui.css';
+
+// Include non-theme styles for core.
+@include mat-core();
+
+// Define your application's custom theme.
+$primary: mat-palette($mat-purple);
+$accent:  mat-palette($mat-green, A200, A100, A400);
+$theme: mat-dark-theme($primary, $accent);
+
+// Include theme styles for Angular Material components.
+@include angular-material-theme($theme);
+@include app-theme($theme);
+
+.ProseMirror {
+  border: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+
+  img {
+    max-width: 100%;
+  }
+
+  a {
+    color: white;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+
+  textarea {
+    height: 150px;
+  }
+} 
+
+// https://stackoverflow.com/questions/48043945/check-box-outline-icon-takes-additional-space
+.material-icons {
+  overflow: hidden;
+}
+
+.mat-card-header-text{
+  width: 100% !important;
+}
+
+h1 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: inherit;
+}

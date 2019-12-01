@@ -1,0 +1,75 @@
+<div *ngIf="users$ | async as users">
+  <p>Users:</p>
+  <mat-accordion *ngFor="let user of users">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ user.email }}
+          </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+        <mat-form-field color="accent">
+          <mat-label>Role</mat-label>
+          <select matNativeControl required [value]="user.role" (change)="onRoleChange($event, user)" [disabled]="user.role === 'owner'">
+            <option value="owner">Owner</option>
+            <option value="admin">Admin</option>
+            <option value="member">Member</option>
+          </select>
+        </mat-form-field>
+      </div>
+      <div>
+        <button *ngIf="user.role !== 'owner'" mat-button (click)="onDelete(user.email)">Delete</button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div *ngIf="invitedUsers$ | async as invitedUsers">
+    <p *ngIf="invitedUsers.length > 0">Invited users:</p>
+    <mat-accordion *ngFor="let user of invitedUsers">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ user?.email }}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div>
+          <mat-form-field color="accent">
+            <mat-label>Role</mat-label>
+            <select matNativeControl required [value]="user.role" disabled="true">
+              <option value="owner">Owner</option>
+              <option value="admin">Admin</option>
+              <option value="member">Member</option>
+            </select>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="divider">
+    <mat-divider></mat-divider>
+  </div>
+  <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header (click)="$event.stopPropagation()">
+            <mat-panel-title>Add user</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div>
+          <form [formGroup]="inviteForm">
+            <mat-form-field>
+              <mat-label for="invite_email">
+                Email
+              </mat-label>
+              <input matInput id="invite_email" formControlName="email" placeholder="Email">
+            </mat-form-field>
+            <mat-form-field color="accent">
+              <mat-label>Role</mat-label>
+              <select matNativeControl required formControlName="role">
+                <option value="admin">Admin</option>
+                <option value="member">Member</option>
+              </select>
+            </mat-form-field>
+            <button mat-button color="primary" mat-raised-button (click)="onInvite($event, inviteForm.value)">Save</button>
+          </form>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+</div>

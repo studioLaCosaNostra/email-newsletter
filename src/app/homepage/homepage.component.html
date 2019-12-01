@@ -1,0 +1,28 @@
+<nav>
+  <app-navbar></app-navbar>
+</nav>
+<main>
+  <mat-card class="create-newsletter">
+    <mat-card-title>
+      <h1>Welcome to <span style="white-space: nowrap">the e-mail newsletter app</span></h1>
+    </mat-card-title>
+    <mat-card-subtitle>Now you can start your adventure with email marketing.</mat-card-subtitle>
+    <mat-card-content>
+      <app-new-newsletter-button></app-new-newsletter-button>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="subscribe-form">
+    <mat-card-title fxLayout="row" fxLayoutAlign="center center">
+      Stay updated 
+      <mat-icon fxFlexOffset="10px">email_outline</mat-icon>
+    </mat-card-title>
+    <mat-card-subtitle>Subscribe to our newsletter, receive news on the latest developments and special offers!</mat-card-subtitle>
+    <lib-newsletter-subscribe-form newsletter="a27a94b2-206b-42fa-a0ee-b9a993740129"></lib-newsletter-subscribe-form>
+  </mat-card>
+</main>
+<footer>
+  <a mat-button
+    title="Privacy policy of the email newsletter application"
+    routerLink="/privacy-policy">Privacy policy</a>
+</footer>
+<app-cookie-consent></app-cookie-consent>

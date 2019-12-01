@@ -1,0 +1,17 @@
+.rename-button-wrapper {
+  margin-left: 20px;
+}
+
+.settings {
+  padding-top: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+mat-card {
+  margin-top: 5px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

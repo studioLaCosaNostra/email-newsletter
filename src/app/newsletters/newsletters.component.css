@@ -1,0 +1,11 @@
+@import '../../styles/empty.scss';
+
+.newsletter { 
+  max-width: 900px;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+app-new-newsletter-button {
+  margin-top: 20px;
+}

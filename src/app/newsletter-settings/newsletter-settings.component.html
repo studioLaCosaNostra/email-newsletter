@@ -1,0 +1,67 @@
+<app-navbar></app-navbar>
+<app-navbar-newsletter></app-navbar-newsletter>
+<div class="settings">
+  <div *ngIf="id$ | async as id">
+    <mat-card>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field color="accent">
+          <mat-label>Name</mat-label>
+          <input matInput #name [value]="name$ | async" type="text">
+        </mat-form-field>
+        <div class="rename-button-wrapper">
+          <!-- TODO 1 block hide button if not owner -->
+          <button mat-button mat-raised-button color="primary" (click)="onRenameNewsletter(id, name.value)">Change</button>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>Settings</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="settingsForm">
+          <mat-form-field class="transport" color="accent">
+            <mat-label for="transport">Transport</mat-label>
+            <textarea matInput id="transport" formControlName="transport"></textarea>
+          </mat-form-field>
+          <mat-form-field color="accent">
+            <mat-label for="dailyLimit">Daily limit</mat-label>
+            <input matInput id="dailyLimit" type="text" formControlName="dailyLimit">
+          </mat-form-field>
+          <p *ngIf="newsletterSettings$ | async as settings">
+            Remaining daily limit: {{ settings?.remainingDailyLimit }}
+          </p>
+          <div formGroupName="subscribe">
+            <span>Subscribe settings</span>
+            <mat-form-field color="accent">
+              <mat-label for="from">From</mat-label>
+              <input matInput id="from" type="text" formControlName="from" placeholder="example@example.com">
+            </mat-form-field>
+  
+            <mat-form-field color="accent">
+              <mat-label for="subject">Subject</mat-label>
+              <input matInput id="subject" type="text" formControlName="subject" placeholder="Verify your email for awesome newsletter">
+            </mat-form-field>
+            <div appContentEditor formControlName="body"></div> 
+            <mat-form-field color="accent">
+              <mat-label for="confirmationUrlSignature">Confirmation url signature</mat-label>
+              <input matInput id="confirmationUrlSignature" type="text" formControlName="confirmationUrlSignature">
+            </mat-form-field> 
+          </div>
+          <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
+            <!-- TODO 2 add spinner after click delete -->
+            <!-- TODO 1 add confirm dialog before delete -->
+            <button mat-button color="warn" *ngIf="canDeleteNewsletter$ | async" (click)="onDeleteNewsletter(id)">Delete newsletter</button>
+            <span class="spacer"></span>
+            <button mat-button color="primary" mat-raised-button (click)="onSubmit(id, settingsForm.value)">Save</button>
+          </mat-card-actions>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="canSeeUsersPermissions$ | async" class="users-permissions">
+      <mat-card-title>Users & permissions</mat-card-title>
+      <mat-card-content>
+        <app-users-permissions-manage-list [newsletter]="id"></app-users-permissions-manage-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

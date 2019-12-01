@@ -1,0 +1,19 @@
+<nav>
+  <app-navbar></app-navbar>
+</nav>
+<main>
+  <div class="login-card-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h1>Sign in</h1>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+          <p *ngIf="error$ | async as error" class="error">{{ error | json }}</p>
+          <div #firebaseuiAuthContainer></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</main>
+<app-cookie-consent></app-cookie-consent>
