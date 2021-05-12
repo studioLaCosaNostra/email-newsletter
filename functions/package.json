@@ -24,7 +24,7 @@
     "firebase-functions-test": "^0.1.6",
     "firebase-tools": "^7.6.1",
     "mocha": "^6.2.2",
-    "nodemailer": "^6.3.1",
+    "nodemailer": "^6.4.16",
     "nyc": "^14.1.1",
     "sinon": "^7.5.0",
     "uuid": "^3.3.3"
